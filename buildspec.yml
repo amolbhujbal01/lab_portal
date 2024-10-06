@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20 # Specify the Node.js version
+    commands:
+      - echo "Installing dependencies..."
+      - npm install # Install the dependencies defined in package.json
+
+  pre_build:
+    commands:
+      - echo "Running tests..."
+      - npm test -- --watchAll=false # Run tests; adjust based on your test setup
+
+  build:
+    commands:
+      - echo "Building the application..."
+      - npm run build # Build the React app
+
+artifacts:
+  files:
+    - build/**/* # Specify the build output directory
+  base-directory: build # Base directory for the artifacts
